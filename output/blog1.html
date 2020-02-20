@@ -1,39 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-        <meta charset="utf-8" />
-        <title>My First Blog</title>
-        <link rel="stylesheet" href="./theme/css/main.css" />
-        <link href="https://marinam2278.github.io/myblog_posts/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Blogging. Atom Feed" />
+ <title>My First Blog</title>
+ <!-- Latest compiled and minified CSS -->
+ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+ <div class="container">
+  <h1><a href=".">Blogging.</a></h1>
+ </div>
 </head>
-
-<body id="index" class="home">
-        <header id="banner" class="body">
-                <h1><a href="./">Blogging. </a></h1>
-                <nav><ul>
-                    <li class="active"><a href="./category/misc.html">misc</a></li>
-                </ul></nav>
-        </header><!-- /#banner -->
-<section id="content" class="body">
-  <article>
-    <header>
-      <h1 class="entry-title">
-        <a href="./blog1.html" rel="bookmark"
-           title="Permalink to My First Blog">My First Blog</a></h1>
-    </header>
-
-    <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2020-01-01T11:35:00-05:00">
-                Published: Wed 01 January 2020
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="./author/marina.html">Marina</a>
-        </address>
-<p>In <a href="./category/misc.html">misc</a>.</p>
-
-</footer><!-- /.post-info -->      <div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.core.display</span> <span class="kn">import</span> <span class="n">HTML</span>
+<body>
+ <div class="container">
+<div class="row">
+ <div class="col-md-8">
+  <h3>My First Blog</h3>
+  <label>2020-01-01</label>
+  <div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.core.display</span> <span class="kn">import</span> <span class="n">HTML</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -68,27 +49,8 @@
 <p><img alt="title" src="images/playfair_timeseries.png"></p>
 <h5>Playfair, who argued that charts communicated better than tables of data, has been credited with inventing the line, bar, area, and pie charts. His time-series plots are still presented as models of clarity. Playfair first published The Commercial and Political Atlas in London in 1786. It contained 43 time-series plots and one bar chart, a form apparently introduced in this work. It has been described[by whom?] as the first major work to contain statistical graphs. Playfair's Statistical Breviary, published in London in 1801, contains what is generally credited as the first pie chart.</h5>
 <p><img alt="title" src="images/playfair_piechart.jpg"></p>
-    </div><!-- /.entry-content -->
-
-  </article>
-</section>
-        <section id="extras" class="body">
-                <div class="social">
-                        <h2>social</h2>
-                        <ul>
-                            <li><a href="https://marinam2278.github.io/myblog_posts/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
-
-                        </ul>
-                </div><!-- /.social -->
-        </section><!-- /#extras -->
-
-        <footer id="contentinfo" class="body">
-                <address id="about" class="vcard body">
-                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
-                </address><!-- /#about -->
-
-                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
-        </footer><!-- /#contentinfo -->
-
+ </div>
+</div>
+ </div>
 </body>
 </html>

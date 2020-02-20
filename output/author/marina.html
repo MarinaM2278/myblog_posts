@@ -1,276 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-        <meta charset="utf-8" />
-        <title>Blogging. - Marina</title>
-        <link rel="stylesheet" href="../theme/css/main.css" />
-        <link href="https://marinam2278.github.io/myblog_posts/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Blogging. Atom Feed" />
+ <title>Blogging. - Articles by Marina</title>
+ <!-- Latest compiled and minified CSS -->
+ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+ <div class="container">
+  <h1><a href="..">Blogging.</a></h1>
+ </div>
 </head>
-
-<body id="index" class="home">
-        <header id="banner" class="body">
-                <h1><a href="../">Blogging. </a></h1>
-                <nav><ul>
-                    <li><a href="../category/misc.html">misc</a></li>
-                </ul></nav>
-        </header><!-- /#banner -->
-
-            <aside id="featured" class="body">
-                <article>
-                    <h1 class="entry-title"><a href="../blog5.html">My Fifth Blog</a></h1>
-<footer class="post-info">
-        <abbr class="published" title="2020-02-20T11:35:00-05:00">
-                Published: Thu 20 February 2020
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="../author/marina.html">Marina</a>
-        </address>
-<p>In <a href="../category/misc.html">misc</a>.</p>
-
-</footer><!-- /.post-info --><h3>How to upload large files into Git repository?</h3>
-<h4>As described on GitHub website -  Git Large File Storage (LFS) replaces large files such as audio samples, videos, datasets, and graphics with text pointers inside Git, while storing the file contents on a remote server like GitHub.com or GitHub Enterprise.</h4>
-<h4>." ..In order to keep the GitHub service performing well for everyone, we don't allow uploading large files (greater than 100MB) inside a Git repository. GitHub Pages is not intended to be used to distribute configuration files, large binaries, or other static assets. There are several low-cost services that are optimized for bulk storage and distributing large files. You can find more information on those services in our help documentation."</h4>
-<h4>1. Download and install the Git command line extension. Once downloaded and installed, set up Git LFS and its respective hooks by running:</h4>
-<h4>2. Select the file types you'd like Git LFS to manage (or directly edit your .gitattributes). You can configure additional file extensions at anytime.</h4>
-<h4>3. Make sure .gitattributes is tracked. Just commit and push to GitHub as you normally would.</h4>
-<h4>code below:             (But it did not help me....)</h4>
-<div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">lfs</span> <span class="n">install</span>
-
-<span class="n">git</span> <span class="n">lfs</span> <span class="n">track</span> <span class="s2">&quot;*.psd&quot;</span>
-
-<span class="n">git</span> <span class="n">add</span> <span class="o">.</span><span class="n">gitattributes</span>
-
-<span class="n">git</span> <span class="n">add</span> <span class="n">file</span><span class="o">.</span><span class="n">psd</span>
-<span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">m</span> <span class="s2">&quot;Add design file&quot;</span>
-<span class="n">git</span> <span class="n">push</span> <span class="n">origin</span> <span class="n">master</span>
-</pre></div>
-
-
-<h4>For my  assignment data file had over  2mln. records and it total over 500MB (which is not THAT big, but still...). I was able to process data and create the prediction model in Jupiter Notebook, but it was impossible to upload it into Git Hub and Heroku. After some struggle I found  YouTube video posted by Jie Jenn explaining his way of dealing with same issue. It worked for me as well. The idea is to split  your file  into the chunks.</h4>
-<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">os</span>
-
-<span class="n">chunk_size</span> <span class="o">=</span> <span class="mi">100000</span>           <span class="c1">########## number of records in my chunks.</span>
-<span class="n">batch_no</span> <span class="o">=</span> <span class="mi">1</span>
-
-<span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;filePathAndName.csv&#39;</span><span class="p">,</span> <span class="n">chunksize</span> <span class="o">=</span> <span class="n">chunk_size</span><span class="p">):</span>
-    <span class="n">chunk</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;filePathAndName&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">batch_no</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-    <span class="n">batch_no</span> <span class="o">+=</span> <span class="mi">1</span>
-</pre></div>
-
-
-<h2>Original File:</h2>
-<p><img alt="title" src="images/original_file.png"></p>
-<h2>Chunked files:</h2>
-<p><img alt="title" src="images/chunked.png"></p>
-<h6>I removed after that my original sourse file as well.</h6>
-<div class="highlight"><pre><span></span><span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s1">&#39;filePathAndName.csv&#39;</span><span class="p">)</span>
-</pre></div>
-
-
-<h4>Now my data was ready to be pushed into GiHub. The questions still left - if I will push it to Heroku, how would I deal with my data splitted over the number of separated files? Another  YouTube video!!!  Posted by Softhints. The solution was just what I was looking for - Loading multiple files into single DataFrame in python. Then process data and load into GitHub and Heroku.</h4>
-<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">glob</span> 
-</pre></div>
-
-
-<div class="highlight"><pre><span></span><span class="c1">##Rename multiple csv files in a folder with Python</span>
-<span class="k">def</span> <span class="nf">rename</span><span class="p">(</span><span class="nb">dir</span><span class="p">,</span> <span class="n">pathAndfilename</span><span class="p">,</span> <span class="n">pattern</span><span class="p">,</span> <span class="n">tittlePattern</span><span class="p">):</span>
-    <span class="n">os</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">pathAndfilename</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">dir</span><span class="p">,</span> <span class="n">tittlePattern</span><span class="p">))</span>
-</pre></div>
-
-
-<div class="highlight"><pre><span></span><span class="c1">##search for csv files in the working folderp</span>
-<span class="n">path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s1">&#39;filepath/*.csv*&#39;</span><span class="p">)</span>
-</pre></div>
-
-
-<div class="highlight"><pre><span></span><span class="c1">##iterate and rename them one by one with the number of the iteration.</span>
-<span class="c1">#I had to add (try/Except: pass, as after first run I was getting exception, files was renamed already.)</span>
-<span class="k">try</span><span class="p">:</span>
-    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">fname</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">path</span><span class="p">)):</span>
-        <span class="n">rename</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s1">&#39;filepath/&#39;</span><span class="p">),</span> <span class="n">fname</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;*csv&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;test</span><span class="si">{}</span><span class="s1">.csv&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
-<span class="k">except</span><span class="p">:</span>
-    <span class="k">pass</span>
-</pre></div>
-
-
-<h2>Renamed Files:</h2>
-<p><img alt="title" src="images/renamed.png"></p>
-<div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
-</pre></div>
-
-
-<div class="highlight"><pre><span></span><span class="k">for</span>  <span class="n">fname</span> <span class="ow">in</span>  <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
-    <span class="n">head</span><span class="p">,</span> <span class="n">tail</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
-    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="s1">&#39;,&#39;</span><span class="p">)</span>
-    <span class="n">df3</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;ColName&#39;</span><span class="p">],</span> <span class="n">ascending</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;ColName&#39;</span><span class="p">],</span> <span class="n">axis</span> <span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">df3</span><span class="p">[</span><span class="s1">&#39;channel&#39;</span><span class="p">]</span><span class="o">=</span> <span class="n">tail</span>
-    <span class="n">result</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">result</span><span class="p">,</span> <span class="n">df3</span><span class="p">])</span>
-</pre></div>
-
-
-<h2>Result - DataFrame</h2>
-<p><img alt="title" src="images/result.png"></p>
-<div class="highlight"><pre><span></span><span class="c1">#after that my data frame was ready and I was able to proceed as usual.</span>
-<span class="n">df1</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;COL1&#39;</span><span class="p">,</span> <span class="s1">&#39;COL2&#39;</span><span class="p">,</span><span class="s1">&#39;COL3&#39;</span><span class="p">,</span> <span class="s1">&#39;channel&#39;</span><span class="p">],</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
-</pre></div>
-
-
-<h4>Of cause there are other ways to deal with large data sets: DASK Dataframe, Vaex- python library for for lazy Out-of-Core DataFrames (similar to Pandas), to visualize and explore big tabular datasets (for string and numbers).  As well as AWS PostgreSQL, known as Postgres, free and open-source relational database management system, which designed to handle a range of workloads, from single machines to data warehouses or Web services with many concurrent users. And some others....</h4>
-<h4>The way I described above helped me, hope it will help somebody else.</h4>                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="../blog4.html" rel="bookmark"
-                           title="Permalink to My Forth Blog">My Forth Blog</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2020-01-30T11:35:00-05:00">
-                Published: Thu 30 January 2020
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="../author/marina.html">Marina</a>
-        </address>
-<p>In <a href="../category/misc.html">misc</a>.</p>
-
-</footer><!-- /.post-info -->                <h3>Vaex - Pandas of the future....?</h3>
-<p><img alt="title" src="images/vaex_1.png"></p>
-<h3>What is vaex...</h3>
-<div class="highlight"><pre><span></span><span class="err">Vaex is a python library for lazy Out-of-Core DataFrames (similar to Pandas), to visualize and explore big tabular datasets. It can calculate statistics such as mean, sum, count, standard deviation etc, on an N-dimensional grid up to a billion (109) objects/rows …</span></pre></div>
-                <a class="readmore" href="../blog4.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="../blog3.html" rel="bookmark"
-                           title="Permalink to My Third Blog">My Third Blog</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2020-01-21T11:35:00-05:00">
-                Published: Tue 21 January 2020
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="../author/marina.html">Marina</a>
-        </address>
-<p>In <a href="../category/misc.html">misc</a>.</p>
-
-</footer><!-- /.post-info -->                <h3>Outliers Detection with IsolationForest and LocalOutlierfactor.</h3>
-<p><img alt="title" src="images/outliers_top.png"></p>
-<div class="highlight"><pre><span></span><span class="n">What</span> <span class="k">are</span> <span class="n">the</span> <span class="k">Data</span> <span class="n">Outliers</span><span class="o">?</span>
-
-<span class="err">“</span><span class="n">Observation</span> <span class="n">which</span> <span class="n">deviates</span> <span class="n">so</span> <span class="n">much</span> <span class="k">from</span> <span class="n">other</span> <span class="n">observations</span> <span class="k">as</span> <span class="k">to</span> <span class="n">arouse</span> <span class="n">suspicion</span> <span class="n">it</span> <span class="n">was</span> <span class="k">generated</span> <span class="k">by</span> <span class="n">a</span> <span class="n">different</span> <span class="n">mechanism</span><span class="err">”</span> <span class="err">—</span> 
-                                                    <span class="n">Hawkins</span><span class="p">(</span><span class="mi">1980</span><span class="p">)</span>
-
-<span class="n">Outliers</span> <span class="k">are</span> <span class="k">data</span> <span class="n">points</span> <span class="k">in</span> <span class="n">your</span> <span class="k">data</span> <span class="k">with</span> <span class="k">values</span> <span class="n">outside</span> <span class="k">of</span> <span class="n">normal</span> <span class="k">data</span> <span class="n">population</span><span class="p">.</span> <span class="n">Amount</span> <span class="k">of</span> <span class="n">traffic</span> <span class="n">changes …</span></pre></div>
-                <a class="readmore" href="../blog3.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="../blog1.html" rel="bookmark"
-                           title="Permalink to My First Blog">My First Blog</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2020-01-01T11:35:00-05:00">
-                Published: Wed 01 January 2020
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="../author/marina.html">Marina</a>
-        </address>
-<p>In <a href="../category/misc.html">misc</a>.</p>
-
-</footer><!-- /.post-info -->                <div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.core.display</span> <span class="kn">import</span> <span class="n">HTML</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span>
-<span class="kn">from</span> <span class="nn">IPython.core.display</span> <span class="kn">import</span> <span class="n">HTML</span>
-<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span><span class="p">,</span> <span class="n">ImageOps</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
-<span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
-</pre></div>
-
-
-<p>This is an image</p>
-<p><img alt="title" src="images/statistic_image.png"></p>
-<div class="highlight"><pre><span></span><span class="n">mytext1 …</span></pre></div>
-                <a class="readmore" href="../blog1.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="../blog2.html" rel="bookmark"
-                           title="Permalink to My Second Blog">My Second Blog</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2020-01-01T11:35:00-05:00">
-                Published: Wed 01 January 2020
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="../author/marina.html">Marina</a>
-        </address>
-<p>In <a href="../category/misc.html">misc</a>.</p>
-
-</footer><!-- /.post-info -->                <div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.core.display</span> <span class="kn">import</span> <span class="n">HTML</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span>
-<span class="kn">from</span> <span class="nn">IPython.core.display</span> <span class="kn">import</span> <span class="n">HTML</span>
-<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span><span class="p">,</span> <span class="n">ImageOps</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
-<span class="kn">import</span> <span class="nn">altair</span> <span class="k">as</span> <span class="nn">alt</span>
-<span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
-</pre></div>
-
-
-<p><img alt="title" src="images/original_graph.png"></p>
-<h5><strong><em>How …</em></strong></h5>
-                <a class="readmore" href="../blog2.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-                </ol><!-- /#posts-list -->
-                </section><!-- /#content -->
-        <section id="extras" class="body">
-                <div class="social">
-                        <h2>social</h2>
-                        <ul>
-                            <li><a href="https://marinam2278.github.io/myblog_posts/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
-
-                        </ul>
-                </div><!-- /.social -->
-        </section><!-- /#extras -->
-
-        <footer id="contentinfo" class="body">
-                <address id="about" class="vcard body">
-                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
-                </address><!-- /#about -->
-
-                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
-        </footer><!-- /#contentinfo -->
-
+<body>
+ <div class="container">
+<div class="row">
+ <div class="col-md-8">
+   <h3><a href="../blog5.html">My Fifth Blog</a></h3>
+   <label>2020-02-20</label>
+   <h3><a href="../blog4.html">My Forth Blog</a></h3>
+   <label>2020-01-30</label>
+   <h3><a href="../blog3.html">My Third Blog</a></h3>
+   <label>2020-01-21</label>
+   <h3><a href="../blog1.html">My First Blog</a></h3>
+   <label>2020-01-01</label>
+   <h3><a href="../blog2.html">My Second Blog</a></h3>
+   <label>2020-01-01</label>
+ </div>
+</div>
+ </div>
 </body>
 </html>
