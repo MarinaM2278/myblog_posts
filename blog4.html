@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <title>My Forth Blog</title>
+        <link rel="stylesheet" href="./theme/css/main.css" />
+        <link href="https://marinam2278.github.io/myblog_posts/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Blogging. Atom Feed" />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="./">Blogging. </a></h1>
+                <nav><ul>
+                    <li class="active"><a href="./category/misc.html">misc</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="./blog4.html" rel="bookmark"
+           title="Permalink to My Forth Blog">My Forth Blog</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2020-01-30T11:35:00-05:00">
+                Published: Thu 30 January 2020
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="./author/marina.html">Marina</a>
+        </address>
+<p>In <a href="./category/misc.html">misc</a>.</p>
+
+</footer><!-- /.post-info -->      <h3>Vaex - Pandas of the future....?</h3>
+<p><img alt="title" src="images/vaex_1.png"></p>
+<h3>What is vaex...</h3>
+<div class="highlight"><pre><span></span><span class="err">Vaex is a python library for lazy Out-of-Core DataFrames (similar to Pandas), to visualize and explore big tabular datasets. It can calculate statistics such as mean, sum, count, standard deviation etc, on an N-dimensional grid up to a billion (109) objects/rows per second. Visualization is done using histograms, density plots and 3d volume rendering, allowing interactive exploration of big data. Vaex uses memory mapping, a zero memory copy policy, and lazy computations for best performance (no memory wasted).</span>
+</pre></div>
+
+
+<h3>Why vaex...</h3>
+<div class="highlight"><pre><span></span><span class="n">A</span> <span class="n">few</span> <span class="n">strong</span> <span class="n">features</span> <span class="k">of</span> <span class="n">vaex</span> <span class="k">are</span><span class="p">:</span>
+
+<span class="n">Performance</span><span class="p">:</span> <span class="n">works</span> <span class="k">with</span> <span class="n">huge</span> <span class="n">tabular</span> <span class="k">data</span><span class="p">,</span> <span class="n">processes</span> <span class="o">&gt;</span><span class="mi">109</span> <span class="k">rows</span><span class="o">/</span><span class="k">second</span>
+
+<span class="n">Lazy</span> <span class="o">/</span> <span class="n">Virtual</span> <span class="n">columns</span><span class="p">:</span> <span class="n">compute</span> <span class="k">on</span> <span class="n">the</span> <span class="n">fly</span><span class="p">,</span> <span class="k">without</span> <span class="n">wasting</span> <span class="n">ram</span>
+
+<span class="n">Memory</span> <span class="n">efficient</span> <span class="k">no</span> <span class="n">memory</span> <span class="n">copies</span> <span class="k">when</span> <span class="n">doing</span> <span class="n">filtering</span><span class="o">/</span><span class="n">selections</span><span class="o">/</span><span class="n">subsets</span>
+
+<span class="n">Visualization</span><span class="p">:</span> <span class="n">directly</span> <span class="n">supported</span><span class="p">,</span> <span class="n">a</span> <span class="n">one</span><span class="o">-</span><span class="n">liner</span> <span class="k">is</span> <span class="n">often</span> <span class="n">enough</span>
+
+<span class="k">User</span> <span class="n">friendly</span> <span class="n">API</span><span class="p">:</span> <span class="n">you</span> <span class="n">will</span> <span class="k">only</span> <span class="n">need</span> <span class="k">to</span> <span class="n">deal</span> <span class="k">with</span> <span class="n">the</span> <span class="n">DataFrame</span> <span class="k">object</span><span class="p">,</span> <span class="k">and</span> <span class="n">tab</span> <span class="k">completion</span> <span class="o">+</span> <span class="n">docstring</span> <span class="n">will</span> <span class="n">help</span> <span class="n">you</span> <span class="k">out</span><span class="p">:</span>     <span class="n">ds</span><span class="p">.</span><span class="n">mean</span><span class="o">&lt;</span><span class="n">tab</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">feels</span> <span class="n">very</span> <span class="k">similar</span> <span class="k">to</span> <span class="n">Pandas</span>
+
+<span class="n">Very</span> <span class="n">fast</span> <span class="k">statistics</span> <span class="k">on</span> <span class="n">N</span> <span class="n">dimensional</span> <span class="n">grids</span> <span class="n">such</span> <span class="k">as</span> <span class="n">histograms</span><span class="p">,</span> <span class="n">running</span> <span class="n">mean</span><span class="p">,</span> <span class="n">heatmaps</span>
+
+<span class="n">Jupyter</span> <span class="n">integration</span><span class="p">:</span> <span class="n">vaex</span><span class="o">-</span><span class="n">jupyter</span> <span class="n">will</span> <span class="n">give</span> <span class="n">you</span> <span class="n">interactive</span> <span class="n">visualization</span> <span class="k">and</span> <span class="n">selection</span> <span class="k">in</span> <span class="n">the</span> <span class="n">Jupyter</span> <span class="n">notebook</span> <span class="k">and</span> <span class="n">Jupyter</span> <span class="n">lab</span><span class="p">.</span>
+</pre></div>
+
+
+<p><img alt="title" src="images/Vaex.jpg"></p>
+<div class="highlight"><pre><span></span><span class="n">String</span> <span class="n">manipulations</span> <span class="k">are</span> <span class="n">the</span> <span class="n">essential</span> <span class="n">part</span> <span class="k">of</span> <span class="n">python</span><span class="p">.</span> <span class="k">Using</span> <span class="n">Vaex</span> <span class="n">manipulations</span> <span class="k">on</span> <span class="n">a</span> <span class="n">string</span> <span class="n">can</span> <span class="n">be</span> <span class="n">up</span> <span class="k">to</span>  <span class="mi">1000</span> <span class="n">times</span> <span class="n">faster</span><span class="p">...</span>
+    <span class="err">“</span><span class="n">Almost</span> <span class="mi">1000</span><span class="n">x</span> <span class="n">faster</span> <span class="n">string</span> <span class="n">processing</span><span class="p">,</span> <span class="n">corresponding</span> <span class="k">to</span> <span class="mi">1</span> <span class="k">minute</span> <span class="n">versus</span> <span class="mi">15</span> <span class="n">hours</span><span class="o">!</span> <span class="err">”</span><span class="p">.</span>
+<span class="n">Almost</span> <span class="k">all</span> <span class="n">Pandas</span> <span class="n">string</span> <span class="n">operations</span> <span class="n">available</span> <span class="n">now</span> <span class="k">with</span> <span class="n">Vaex</span><span class="p">.</span>
+
+
+    <span class="n">Accordingly</span> <span class="k">to</span> <span class="n">publication</span> <span class="n">made</span> <span class="k">by</span> <span class="n">Maarten</span> <span class="n">Breddels</span><span class="p">,</span> <span class="n">Vaex</span> <span class="n">performs</span> <span class="o">~</span> <span class="mi">190</span><span class="n">x</span> <span class="n">faster</span> <span class="k">on</span> <span class="n">personal</span> <span class="n">computer</span> <span class="k">and</span> <span class="o">~</span> <span class="mi">1000</span><span class="n">x</span> <span class="n">faster</span> <span class="k">on</span>  <span class="n">AWS</span> <span class="n">h1</span><span class="p">.</span><span class="n">x8large</span> <span class="n">machine</span><span class="p">.</span>
+</pre></div>
+
+
+<p><img alt="title" src="images/vaex_speed.png"></p>
+<h3>vaex Installation</h3>
+<h1>Using conda:</h1>
+<p>conda install -c conda-forge vaex    </p>
+<h1>using pip:</h1>
+<p>pip install --upgrade vaex</p>
+<h6>Detailed description of installation process and vaex latest updates provided by Maarten A. Breddels, Jan 27, 2020 on :</h6>
+<p><a href= "https://readthedocs.org/projects/vaex/downloads/pdf/latest/" >vaex Documentation</a></p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">vaex</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">10</span><span class="o">**</span><span class="mi">18</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">vaex</span><span class="o">.</span><span class="n">from_arrays</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">vaex</span><span class="o">.</span><span class="n">vrange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="err">(1000000000000000000, 1)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">info</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="err">&lt;bound method DataFrame.info of #                        x</span>
+<span class="err">0                        1.0</span>
+<span class="err">1                        2.0</span>
+<span class="err">2                        3.0</span>
+<span class="err">3                        4.0</span>
+<span class="err">4                        5.0</span>
+<span class="err">...                      ...</span>
+<span class="err">999,999,999,999,999,995  1e+18</span>
+<span class="err">999,999,999,999,999,996  1e+18</span>
+<span class="err">999,999,999,999,999,997  1e+18</span>
+<span class="err">999,999,999,999,999,998  1e+18</span>
+<span class="err">999,999,999,999,999,999  1e+18&gt;</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="n">df</span>
+</pre></div>
+
+
+<table>
+<thead>
+<tr><th>#                                                  </th><th>x    </th></tr>
+</thead>
+<tbody>
+<tr><td><i style='opacity: 0.6'>0</i>                      </td><td>1.0  </td></tr>
+<tr><td><i style='opacity: 0.6'>1</i>                      </td><td>2.0  </td></tr>
+<tr><td><i style='opacity: 0.6'>2</i>                      </td><td>3.0  </td></tr>
+<tr><td><i style='opacity: 0.6'>3</i>                      </td><td>4.0  </td></tr>
+<tr><td><i style='opacity: 0.6'>4</i>                      </td><td>5.0  </td></tr>
+<tr><td>...                                                </td><td>...  </td></tr>
+<tr><td><i style='opacity: 0.6'>999,999,999,999,999,995</i></td><td>1e+18</td></tr>
+<tr><td><i style='opacity: 0.6'>999,999,999,999,999,996</i></td><td>1e+18</td></tr>
+<tr><td><i style='opacity: 0.6'>999,999,999,999,999,997</i></td><td>1e+18</td></tr>
+<tr><td><i style='opacity: 0.6'>999,999,999,999,999,998</i></td><td>1e+18</td></tr>
+<tr><td><i style='opacity: 0.6'>999,999,999,999,999,999</i></td><td>1e+18</td></tr>
+</tbody>
+</table>
+
+<div class="highlight"><pre><span></span><span class="ch">#!pip install vaex-hdf5</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="ch">#!pip install vaex.ml</span>
+</pre></div>
+
+
+<h5>String processing opstations are  similar to Pandas (but much faster...).</h5>
+<div class="highlight"><pre><span></span><span class="n">text</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Something&#39;</span><span class="p">,</span> <span class="s1">&#39;very pretty&#39;</span><span class="p">,</span> <span class="s1">&#39;is coming&#39;</span><span class="p">,</span> <span class="s1">&#39;our&#39;</span><span class="p">,</span> <span class="s1">&#39;way.&#39;</span><span class="p">]</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">vaex</span><span class="o">.</span><span class="n">from_arrays</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">text</span><span class="p">)</span>
+<span class="n">df</span>
+</pre></div>
+
+
+<table>
+<thead>
+<tr><th>#                            </th><th>text       </th></tr>
+</thead>
+<tbody>
+<tr><td><i style='opacity: 0.6'>0</i></td><td>Something  </td></tr>
+<tr><td><i style='opacity: 0.6'>1</i></td><td>very pretty</td></tr>
+<tr><td><i style='opacity: 0.6'>2</i></td><td>is coming  </td></tr>
+<tr><td><i style='opacity: 0.6'>3</i></td><td>our        </td></tr>
+<tr><td><i style='opacity: 0.6'>4</i></td><td>way.       </td></tr>
+</tbody>
+</table>
+
+<div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="err">Expression = str_upper(text)</span>
+<span class="c">Length: 5 dtype: str (expression)</span>
+<span class="err">---------------------------------</span>
+<span class="err">0    SOMETHING</span>
+<span class="err">1  VERY PRETTY</span>
+<span class="err">2    IS COMING</span>
+<span class="err">3          OUR</span>
+<span class="err">4         WAY.</span>
+</pre></div>
+
+
+<h4>Plotting : 1d and 2d</h4>
+<div class="highlight"><pre><span></span><span class="err">For the most use cases visualization can be done in 1 and 2d and matplotlib.</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">vaex</span><span class="o">.</span><span class="n">example</span><span class="p">()</span>
+<span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+
+<span class="n">df</span><span class="o">.</span><span class="n">plot1d</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+
+
+<p><img alt="title" src="images/1d.png"></p>
+<div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">what</span><span class="o">=</span><span class="n">vaex</span><span class="o">.</span><span class="n">stat</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">E</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+
+
+<p><img alt="title" src="images/2d.png"></p>
+<div class="highlight"><pre><span></span><span class="c1">##### Result of an N-body simulation of the accretion of 33 satellite galaxies into a Milky Way dark matter halo * 3 million rows = 252MB.</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="c1">### Parallel Computations</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="err">Vaex can make parallel computations when it is hard or impossible to make statistical calculations with multiple arguments, then &#39;delay&#39; computation can be used similar to as in dask or joblib:</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">vaex</span><span class="o">.</span><span class="n">example</span><span class="p">()</span>
+<span class="n">limits</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+<span class="n">delayed_count</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">E</span><span class="p">,</span> <span class="n">binby</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">limits</span><span class="o">=</span><span class="n">limits</span><span class="p">,</span>
+                         <span class="n">shape</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">delay</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">delayed_count</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="c1">##### When datasets are too large to be loaded into one DataFrame, vaex can be used, converting  data into vaex dataframe.</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="n">vaex_df</span> <span class="o">=</span> <span class="n">vaex</span><span class="o">.</span><span class="n">from_pandas</span><span class="p">(</span><span class="n">pandas_df</span><span class="p">,</span> <span class="n">copy_index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">vaex_df</span><span class="o">.</span><span class="n">export</span><span class="p">(</span><span class="s1">&#39;batch_1.hdf5&#39;</span><span class="p">)</span>                             <span class="c1">## saving it on a disc as .hdf5 file.</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="c1">#### Reading data files :</span>
+
+<span class="n">df1</span> <span class="o">=</span> <span class="n">vaex</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;batch_1.hdf5&#39;</span><span class="p">)</span>
+<span class="n">df2</span> <span class="o">=</span> <span class="n">vaex</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;batch_2.hdf5&#39;</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">vaex</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df1</span><span class="p">,</span> <span class="n">df2</span><span class="p">])</span>                            <span class="c1"># will be seen as 1 dataframe without mem copy</span>
+<span class="n">df_altnerative</span> <span class="o">=</span> <span class="n">vaex</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;batch*.hdf5&#39;</span><span class="p">)</span>              <span class="c1"># same effect, but only needs 1 line</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="c1">####### Source: Publications done by Maarten A. Breddels and Jovan Veljanoski.</span>
+</pre></div>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="https://marinam2278.github.io/myblog_posts/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

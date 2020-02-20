@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <title>My Third Blog</title>
+        <link rel="stylesheet" href="./theme/css/main.css" />
+        <link href="https://marinam2278.github.io/myblog_posts/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Blogging. Atom Feed" />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="./">Blogging. </a></h1>
+                <nav><ul>
+                    <li class="active"><a href="./category/misc.html">misc</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="./blog3.html" rel="bookmark"
+           title="Permalink to My Third Blog">My Third Blog</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2020-01-21T11:35:00-05:00">
+                Published: Tue 21 January 2020
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="./author/marina.html">Marina</a>
+        </address>
+<p>In <a href="./category/misc.html">misc</a>.</p>
+
+</footer><!-- /.post-info -->      <h3>Outliers Detection with IsolationForest and LocalOutlierfactor.</h3>
+<p><img alt="title" src="images/outliers_top.png"></p>
+<div class="highlight"><pre><span></span><span class="n">What</span> <span class="k">are</span> <span class="n">the</span> <span class="k">Data</span> <span class="n">Outliers</span><span class="o">?</span>
+
+<span class="err">“</span><span class="n">Observation</span> <span class="n">which</span> <span class="n">deviates</span> <span class="n">so</span> <span class="n">much</span> <span class="k">from</span> <span class="n">other</span> <span class="n">observations</span> <span class="k">as</span> <span class="k">to</span> <span class="n">arouse</span> <span class="n">suspicion</span> <span class="n">it</span> <span class="n">was</span> <span class="k">generated</span> <span class="k">by</span> <span class="n">a</span> <span class="n">different</span> <span class="n">mechanism</span><span class="err">”</span> <span class="err">—</span> 
+                                                    <span class="n">Hawkins</span><span class="p">(</span><span class="mi">1980</span><span class="p">)</span>
+
+<span class="n">Outliers</span> <span class="k">are</span> <span class="k">data</span> <span class="n">points</span> <span class="k">in</span> <span class="n">your</span> <span class="k">data</span> <span class="k">with</span> <span class="k">values</span> <span class="n">outside</span> <span class="k">of</span> <span class="n">normal</span> <span class="k">data</span> <span class="n">population</span><span class="p">.</span> <span class="n">Amount</span> <span class="k">of</span> <span class="n">traffic</span> <span class="n">changes</span> <span class="k">after</span> <span class="n">the</span> <span class="n">accident</span> <span class="k">or</span> <span class="n">winter</span> <span class="n">snow</span> <span class="n">storm</span><span class="p">,</span> <span class="n">amount</span> <span class="k">of</span> <span class="n">rain</span> <span class="n">falling</span> <span class="k">after</span> <span class="n">the</span> <span class="n">huracaine</span><span class="p">,</span> <span class="n">amount</span> <span class="k">of</span> <span class="n">internet</span> <span class="n">traffic</span>  <span class="n">changes</span> <span class="n">during</span> <span class="n">the</span> <span class="n">holidays</span><span class="p">...</span>
+<span class="n">The</span> <span class="n">outlier</span> <span class="k">is</span> <span class="n">identified</span> <span class="k">as</span> <span class="n">the</span> <span class="n">largest</span> <span class="k">or</span> <span class="n">smallest</span> <span class="n">value</span> <span class="k">in</span> <span class="n">the</span> <span class="k">data</span> <span class="k">set</span><span class="p">.</span>
+</pre></div>
+
+
+<p><img alt="title" src="images/outlier3.png"></p>
+<div class="highlight"><pre><span></span><span class="n">Why</span> <span class="k">do</span> <span class="n">we</span> <span class="n">need</span> <span class="k">to</span> <span class="n">investigate</span> <span class="n">Outliers</span><span class="o">?</span>
+
+<span class="n">This</span> <span class="k">data</span> <span class="n">point</span> <span class="k">is</span> <span class="n">drastically</span> <span class="n">different</span> <span class="k">from</span> <span class="n">the</span> <span class="n">rest</span> <span class="k">of</span> <span class="n">your</span> <span class="k">data</span> <span class="n">population</span> <span class="k">and</span> <span class="n">most</span> <span class="n">parametric</span> <span class="n">statistic</span> <span class="k">like</span> <span class="n">means</span><span class="p">,</span> <span class="n">standard</span> <span class="n">deviations</span> <span class="k">and</span> <span class="n">correlations</span><span class="p">,</span> <span class="k">and</span> <span class="k">all</span> <span class="n">statistic</span> <span class="n">based</span> <span class="k">on</span> <span class="n">these</span> <span class="k">are</span> <span class="n">highly</span> <span class="k">sensitive</span> <span class="k">to</span> <span class="n">outliers</span><span class="p">.</span> <span class="n">The</span> <span class="n">outliers</span> <span class="n">may</span> <span class="n">be</span> <span class="n">caused</span> <span class="k">by</span> <span class="k">data</span> <span class="n">entry</span> <span class="n">errors</span><span class="p">,</span> <span class="n">measurements</span> <span class="n">errors</span><span class="p">,</span> <span class="n">experimental</span> <span class="n">errors</span><span class="p">,</span> <span class="k">data</span> <span class="n">processing</span> <span class="n">error</span><span class="p">,</span> <span class="n">sampling</span> <span class="n">error</span><span class="p">,</span> <span class="k">natural</span> <span class="p">(</span><span class="k">not</span> <span class="n">an</span> <span class="n">error</span><span class="p">,</span> <span class="n">but</span> <span class="n">novelties</span> <span class="k">in</span> <span class="k">data</span><span class="p">).</span>
+</pre></div>
+
+
+<p><img alt="title" src="images/effect_outliers.jpg"></p>
+<div class="highlight"><pre><span></span><span class="n">How</span> <span class="n">can</span> <span class="n">we</span> <span class="n">detect</span> <span class="n">Outliers</span><span class="o">?</span>
+
+
+<span class="k">If</span> <span class="n">training</span> <span class="k">data</span> <span class="k">contains</span> <span class="n">outliers</span><span class="p">,</span> <span class="n">the</span> <span class="n">detection</span> <span class="n">estimators</span> <span class="n">can</span> <span class="n">be</span> <span class="n">used</span> <span class="k">to</span> <span class="n">try</span> <span class="k">to</span> <span class="n">fit</span> <span class="n">regions</span> <span class="k">where</span> <span class="n">the</span> <span class="n">training</span> <span class="k">data</span> <span class="k">is</span> <span class="n">the</span> <span class="n">most</span> <span class="n">concentrated</span> <span class="k">and</span> <span class="k">ignore</span> <span class="n">the</span> <span class="n">deviant</span> <span class="n">observations</span><span class="p">.</span>
+<span class="k">In</span> <span class="n">the</span> <span class="k">case</span> <span class="k">of</span> <span class="n">outlier</span> <span class="n">detection</span><span class="p">,</span> <span class="n">we</span> <span class="n">don</span><span class="err">’</span><span class="n">t</span> <span class="n">have</span> <span class="n">a</span> <span class="n">clean</span> <span class="k">data</span> <span class="k">set</span> <span class="n">representing</span> <span class="n">the</span> <span class="n">population</span> <span class="k">of</span> <span class="n">regular</span> <span class="n">observations</span> <span class="n">that</span> <span class="n">can</span> <span class="n">be</span> <span class="n">used</span> <span class="k">to</span> <span class="n">train</span> <span class="k">any</span> <span class="n">tool</span><span class="p">.</span>
+
+<span class="n">One</span> <span class="n">efficient</span> <span class="n">way</span> <span class="k">of</span> <span class="n">performing</span> <span class="n">outlier</span> <span class="n">detection</span> <span class="k">in</span> <span class="n">datasets</span> <span class="k">is</span> <span class="k">to</span> <span class="n">use</span> <span class="n">ensemble</span><span class="p">.</span><span class="n">IsolationForest</span><span class="p">,</span> <span class="n">described</span> <span class="k">in</span> <span class="n">scikit</span><span class="o">-</span><span class="n">learn</span><span class="p">.</span> 
+<span class="n">Based</span> <span class="k">on</span> <span class="n">an</span> <span class="n">ensemble</span> <span class="k">of</span> <span class="n">tree</span><span class="p">.</span><span class="n">ExtraTreeRegressor</span><span class="p">,</span> <span class="n">IsolationForest</span> <span class="err">‘</span><span class="n">isolates</span><span class="err">’</span> <span class="n">observations</span> <span class="k">by</span> <span class="n">randomly</span> <span class="n">selecting</span> <span class="n">a</span> <span class="n">feature</span> <span class="k">and</span> <span class="k">then</span> <span class="n">randomly</span> <span class="n">selecting</span> <span class="n">a</span> <span class="n">split</span> <span class="n">value</span> <span class="k">between</span> <span class="n">the</span> <span class="n">maximum</span> <span class="k">and</span> <span class="n">minimum</span> <span class="k">values</span> <span class="k">of</span> <span class="n">the</span> <span class="n">selected</span> <span class="n">feature</span><span class="p">.</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">IsolationForest</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="kn">from</span> <span class="nn">IPython.core.display</span> <span class="kn">import</span> <span class="n">HTML</span>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span><span class="p">,</span> <span class="n">ImageOps</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">LocalOutlierFactor</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/Twitter_volume_AMZN.csv&#39;</span><span class="p">)</span>  <span class="c1">### internet streaming data</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;timestamp&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;timestamp&#39;</span><span class="p">])</span>
+<span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;timestamp&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="c1">#</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="n">clf</span> <span class="o">=</span> <span class="n">IsolationForest</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">max_samples</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span> <span class="mi">42</span><span class="p">,</span> <span class="n">contamination</span><span class="o">=.</span><span class="mi">05</span><span class="p">)</span>
+<span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="n">df_pred</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;outliers&#39;</span><span class="p">]</span><span class="o">=</span> <span class="n">df_pred</span>
+<span class="n">outliers</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;outliers&#39;</span><span class="p">]</span><span class="o">==-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">outlier_index</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">outliers</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;outliers&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">())</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;outliers&#39;</span><span class="p">]);</span>
+</pre></div>
+
+
+<p><img alt="title" src="images/fig.png"></p>
+<p>Where the "-1" represents the outliers and "1" represents the inliers. Contamination stands for percentage of outlier points in the data.</p>
+<div class="highlight"><pre><span></span><span class="err">Another efficient way to detect outliers on high dimentional datasets is to use Local Outlier Factor (LOF) algorithm, which is defined in Scikit_learn as unsupervised anomaly detection method. </span>
+<span class="err">This algorithm computes a score (outiler factor) reflecting the degree of abnormality and measures the local deviation of density of a given sample with respect to its neighbors. Samples which have a substantially lower density considered outliers.</span>
+<span class="err">The number of neighbors should be less the number of provided samples (or all of them will be used). In general n_neighbors = 20.</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/seattleWeather_1948-2017.csv&#39;</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;DATE&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;DATE&#39;</span><span class="p">])</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;DATE&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> 
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pandas.plotting</span> <span class="kn">import</span> <span class="n">register_matplotlib_converters</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">9</span><span class="p">));</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">PRCP</span><span class="p">);</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">TMAX</span><span class="p">);</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">TMIN</span><span class="p">);</span>
+</pre></div>
+
+
+<p><img alt="title" src="images/fig1.png"></p>
+<div class="highlight"><pre><span></span><span class="n">clf</span> <span class="o">=</span> <span class="n">LocalOutlierFactor</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">contamination</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">)</span>
+<span class="n">y_pred</span><span class="o">=</span><span class="n">clf</span><span class="o">.</span><span class="n">fit_predict</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="n">n_errors</span> <span class="o">=</span> <span class="p">(</span><span class="n">y_pred</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">n_errors</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="err">20438</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="n">X_scores</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">negative_outlier_factor_</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">X_scores</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">.</span><span class="mi">04002873</span><span class="n">e</span><span class="o">+</span><span class="mi">00</span> <span class="o">-</span><span class="mi">2</span><span class="p">.</span><span class="mi">42435434</span><span class="n">e</span><span class="o">+</span><span class="mi">00</span> <span class="o">-</span><span class="mi">1</span><span class="p">.</span><span class="mi">15581102</span><span class="n">e</span><span class="o">+</span><span class="mi">00</span> <span class="p">...</span> <span class="o">-</span><span class="mi">1</span><span class="p">.</span><span class="mi">00000000</span><span class="n">e</span><span class="o">+</span><span class="mi">09</span>
+ <span class="o">-</span><span class="mi">1</span><span class="p">.</span><span class="mi">00000000</span><span class="n">e</span><span class="o">+</span><span class="mi">00</span> <span class="o">-</span><span class="mi">1</span><span class="p">.</span><span class="mi">00000000</span><span class="n">e</span><span class="o">+</span><span class="mi">00</span><span class="p">]</span>
+
+
+<span class="k">By</span> <span class="n">changing</span> <span class="n">the</span> <span class="k">parameters</span> <span class="n">n_neighbors</span> <span class="k">and</span> <span class="n">contamination</span> <span class="k">level</span> <span class="n">X_score</span> <span class="n">can</span> <span class="n">be</span> <span class="n">changed</span><span class="p">.</span>
+</pre></div>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="https://marinam2278.github.io/myblog_posts/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>
