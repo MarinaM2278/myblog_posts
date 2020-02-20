@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <title>My First Blog</title>
+        <link rel="stylesheet" href="./theme/css/main.css" />
+        <link href="https://marinam2278.github.io/myblog_posts/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Blogging. Atom Feed" />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="./">Blogging. </a></h1>
+                <nav><ul>
+                    <li class="active"><a href="./category/misc.html">misc</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="./blog1.html" rel="bookmark"
+           title="Permalink to My First Blog">My First Blog</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2020-01-01T11:35:00-05:00">
+                Published: Wed 01 January 2020
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="./author/marina.html">Marina</a>
+        </address>
+<p>In <a href="./category/misc.html">misc</a>.</p>
+
+</footer><!-- /.post-info -->      <div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.core.display</span> <span class="kn">import</span> <span class="n">HTML</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="kn">from</span> <span class="nn">IPython.core.display</span> <span class="kn">import</span> <span class="n">HTML</span>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span><span class="p">,</span> <span class="n">ImageOps</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+</pre></div>
+
+
+<p>This is an image</p>
+<p><img alt="title" src="images/statistic_image.png"></p>
+<div class="highlight"><pre><span></span><span class="n">mytext1</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1"> Little of History :</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">mytext2</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1"> How did statistic come to existence?</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">mytext3</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1"> The word statistics comes from the modern Latin phrase statisticum collegium (lecture about state affairs), which gave rise to the Italian word statista (statesman or politician — compare to status) and the German Statistik (originally the analysis of data about the state.&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mytext1</span><span class="o">+</span><span class="n">mytext2</span><span class="o">+</span><span class="n">mytext3</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span> <span class="n">Little</span> <span class="k">of</span> <span class="n">History</span> <span class="p">:</span>
+
+ <span class="n">How</span> <span class="n">did</span> <span class="n">statistic</span> <span class="n">come</span> <span class="k">to</span> <span class="n">existence</span><span class="o">?</span>
+
+ <span class="n">The</span> <span class="n">word</span> <span class="k">statistics</span> <span class="n">comes</span> <span class="k">from</span> <span class="n">the</span> <span class="n">modern</span> <span class="n">Latin</span> <span class="n">phrase</span> <span class="n">statisticum</span> <span class="n">collegium</span> <span class="p">(</span><span class="n">lecture</span> <span class="n">about</span> <span class="k">state</span> <span class="n">affairs</span><span class="p">),</span> <span class="n">which</span> <span class="n">gave</span> <span class="n">rise</span> <span class="k">to</span> <span class="n">the</span> <span class="n">Italian</span> <span class="n">word</span> <span class="n">statista</span> <span class="p">(</span><span class="n">statesman</span> <span class="k">or</span> <span class="n">politician</span> <span class="err">—</span> <span class="n">compare</span> <span class="k">to</span> <span class="n">status</span><span class="p">)</span> <span class="k">and</span> <span class="n">the</span> <span class="n">German</span> <span class="n">Statistik</span> <span class="p">(</span><span class="n">originally</span> <span class="n">the</span> <span class="n">analysis</span> <span class="k">of</span> <span class="k">data</span> <span class="n">about</span> <span class="n">the</span> <span class="k">state</span>
+</pre></div>
+
+
+<h3>When, who and how invented first Graphs ?</h3>
+<h6>Accordingly to Wikipedia, William Playfair (22 September 1759 – 11 February 1823) a Scottish engineer and political economist, served as a secret agent on behalf of Great Britain during its war with France. The founder of graphical methods of statistics, Playfair invented several types of diagrams: in 1786 the line, area and bar chart of economic data, and in 1801 the pie chart and circle graph, used to show  part-whole relations.</h6>
+<p><img alt="title" src="images/playfair_timeseries.png"></p>
+<h5>Playfair, who argued that charts communicated better than tables of data, has been credited with inventing the line, bar, area, and pie charts. His time-series plots are still presented as models of clarity. Playfair first published The Commercial and Political Atlas in London in 1786. It contained 43 time-series plots and one bar chart, a form apparently introduced in this work. It has been described[by whom?] as the first major work to contain statistical graphs. Playfair's Statistical Breviary, published in London in 1801, contains what is generally credited as the first pie chart.</h5>
+<p><img alt="title" src="images/playfair_piechart.jpg"></p>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="https://marinam2278.github.io/myblog_posts/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>
